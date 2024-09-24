@@ -14,8 +14,8 @@ TagManager:
   - clickables
   - floor
   - dust
-  - 
-  - 
+  - outlined
+  - no outline
   - 
   - 
   - 
