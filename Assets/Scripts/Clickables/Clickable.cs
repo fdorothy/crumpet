@@ -6,6 +6,7 @@ using UnityEngine;
 public class Clickable : MonoBehaviour
 {
     public string customTitle = "";
+    public List<GameObject> gameObjects = new List<GameObject>();
 
     public virtual CursorType GetCursorType()
     {
@@ -30,17 +31,34 @@ public class Clickable : MonoBehaviour
         if (enabled)
             ClickableManager.singleton.SetCursor(GetCursorType(), GetTitle());
         else
+        {
             ClickableManager.singleton.SetCursor(CursorType.NO, GetTitle());
+            SetLayers("outlined");
+        }
     }
 
     public void MouseExit()
     {
         ClickableManager.singleton.ClearCursor();
+        SetLayers("Default");
     }
 
     public void MouseDown()
     {
         ClickableManager.singleton.OnClick(this);
+    }
+
+    void SetLayers(string layer)
+    {
+        foreach (GameObject obj in gameObjects)
+        {
+            SetLayer(obj, layer);
+        }
+    }
+
+    void SetLayer(GameObject obj, string layer)
+    {
+        obj.layer = LayerMask.NameToLayer(layer);
     }
 
     public virtual void TakeAction() { }

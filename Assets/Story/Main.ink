@@ -13,7 +13,7 @@ VAR holding = ""
 
 === intro ===
 This is the story of a dog.
--> house_floor_1("FromOutside")
+-> house_floor_1("Start")
 
 === win ===
 THE END
