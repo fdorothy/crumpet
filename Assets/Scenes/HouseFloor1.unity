@@ -2890,7 +2890,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6426
+  m_ColorTemperature: 4232
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -3226,7 +3226,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 135ee7613fca1d14982e8a56ff322da3,
         type: 3}
       propertyPath: m_Name
-      value: door_exterior
+      value: front_door
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 135ee7613fca1d14982e8a56ff322da3,
         type: 3}
@@ -3241,6 +3241,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 475472487}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 135ee7613fca1d14982e8a56ff322da3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 475472488}
   m_SourcePrefab: {fileID: 100100000, guid: 135ee7613fca1d14982e8a56ff322da3, type: 3}
 --- !u!4 &475472485 stripped
 Transform:
@@ -3275,6 +3279,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.003091712, y: 0.009933198, z: 0.021906896}
   m_Center: {x: 0.000024776498, y: -0.0000000014905913, z: 0.010953448}
+--- !u!114 &475472488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475472486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 981817af829b1834eb2d1e289c946b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customTitle: 
+  gameObjects:
+  - {fileID: 475472486}
 --- !u!1001 &477706419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14896,6 +14915,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1783108754}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 35d05ce81d6c2f84687779a0b929cfca,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1783108755}
   m_SourcePrefab: {fileID: 100100000, guid: 35d05ce81d6c2f84687779a0b929cfca, type: 3}
 --- !u!4 &1783108752 stripped
 Transform:
@@ -14930,6 +14953,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.022061644, y: 0.053284235, z: 0.026311126}
   m_Center: {x: 0.0010308223, y: 0, z: 0.013155563}
+--- !u!114 &1783108755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783108753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 253d3d3486a9f8c49b2ccf6a17457b6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customTitle: 
+  gameObjects:
+  - {fileID: 1783108753}
 --- !u!1001 &1805319451
 PrefabInstance:
   m_ObjectHideFlags: 0

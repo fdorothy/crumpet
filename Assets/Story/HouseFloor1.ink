@@ -7,7 +7,7 @@
 
 # clickables: clear
 
- + [{exit("door", "Leave")}] -> leave_house ->
+ + [{exit("front_door", "Leave")}] -> leave_house ->
  - -> options
  
 = leave_house

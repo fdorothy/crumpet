@@ -47,16 +47,16 @@ public class ClickableManager : MonoBehaviour
 
     public void SetCursor(CursorType type, string hoverText)
     {
-        if (cursorLookup.ContainsKey(type))
-        {
-            CursorVariant cursor = cursorLookup[type];
-            Cursor.SetCursor(cursor.texture, cursor.hotSpot, CursorMode.ForceSoftware);
-            hoverToast.SetText(hoverText);
-        }
-        else
-        {
-            ClearCursor();
-        }
+        hoverToast.SetText(hoverText);
+        //if (cursorLookup.ContainsKey(type))
+        //{
+        //    CursorVariant cursor = cursorLookup[type];
+        //    Cursor.SetCursor(cursor.texture, cursor.hotSpot, CursorMode.ForceSoftware);
+        //}
+        //else
+        //{
+        //    ClearCursor();
+        //}
     }
 
     public bool IsHovering()

@@ -19,6 +19,7 @@ public class Toast : MonoBehaviour
     public void SetText(string text)
     {
         this.text.text = text;
+        Debug.Log("setting hover toast text");
         PushTween(() => tweener = panel.DOFade(1.0f, 0.25f));
     }
 
@@ -40,6 +41,7 @@ public class Toast : MonoBehaviour
 
     public void ClearText()
     {
+        Debug.Log("clearing hover toast text");
         PushTween(() => tweener = panel.DOFade(0.0f, 0.25f).OnComplete(() => text.text = ""));
     }
 }
