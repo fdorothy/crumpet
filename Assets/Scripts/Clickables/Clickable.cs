@@ -7,6 +7,7 @@ public class Clickable : MonoBehaviour
 {
     public string customTitle = "";
     public List<GameObject> gameObjects = new List<GameObject>();
+    List<int> oldLayers = new List<int>();
 
     public virtual CursorType GetCursorType()
     {
@@ -16,6 +17,9 @@ public class Clickable : MonoBehaviour
     public void Start()
     {
         gameObject.layer = LayerMask.NameToLayer("clickables");
+
+        foreach (GameObject obj in gameObjects)
+            oldLayers.Add(obj.layer);
     }
 
     public virtual string GetTitle()
@@ -29,18 +33,20 @@ public class Clickable : MonoBehaviour
     public void MouseEnter()
     {
         if (enabled)
+        {
             ClickableManager.singleton.SetCursor(GetCursorType(), GetTitle());
+            SetLayers("outlined");
+        }
         else
         {
             ClickableManager.singleton.SetCursor(CursorType.NO, GetTitle());
-            SetLayers("outlined");
         }
     }
 
     public void MouseExit()
     {
         ClickableManager.singleton.ClearCursor();
-        SetLayers("Default");
+        ClearLayers();
     }
 
     public void MouseDown()
@@ -53,6 +59,14 @@ public class Clickable : MonoBehaviour
         foreach (GameObject obj in gameObjects)
         {
             SetLayer(obj, layer);
+        }
+    }
+
+    void ClearLayers()
+    {
+        for (int i=0; i<oldLayers.Count; i++)
+        {
+            gameObjects[i].layer = oldLayers[i];
         }
     }
 

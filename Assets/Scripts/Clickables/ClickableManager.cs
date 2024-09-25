@@ -21,6 +21,7 @@ public class ClickableManager : MonoBehaviour
     public CursorVariant[] cursors;
     protected Dictionary<CursorType, CursorVariant> cursorLookup;
     public Clickable lastClicked;
+    Clickable hovered;
     public Player player;
     public Toast hoverToast;
     public static ClickableManager singleton;
@@ -34,7 +35,7 @@ public class ClickableManager : MonoBehaviour
     
     void Start()
     {
-        clickablesLayerMask = LayerMask.GetMask(new string[] { "clickables" });
+        clickablesLayerMask = LayerMask.GetMask(new string[] { "clickables", "outlined" });
         floorLayerMask = LayerMask.GetMask(new string[] { "floor" });
         player = FindObjectOfType<Player>();
         cursorLookup = new Dictionary<CursorType, CursorVariant>();
@@ -110,37 +111,29 @@ public class ClickableManager : MonoBehaviour
         }
         CheckHover();
 
-        if (Input.GetMouseButtonDown(0) && !IsHovering())
+        if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("trying to set player destination");
             RaycastHit hit;
             bool didHit = GetMouseTarget(out hit, clickablesLayerMask);
-            bool hitClickable = true;
-            if (!didHit)
-            {
-                Debug.Log("did not hit");
-                hitClickable = false;
-                didHit = GetMouseTarget(out hit, floorLayerMask);
-            }
             if (didHit)
             {
-                Debug.Log("did hit");
-                if (hitClickable)
+                Transform t = hit.collider.transform;
+                if (t.GetComponent<Clickable>() != null)
                 {
-                    Debug.Log("hit clickable");
-                    Transform t = hit.collider.transform;
-                    if (t.GetComponent<Clickable>() != null)
-                    {
-                        Clickable clickable = t.GetComponent<Clickable>();
-                        clickable.MouseDown();
-                    }
+                    Clickable clickable = t.GetComponent<Clickable>();
+                    clickable.MouseDown();
                 }
-                else
-                {
-                    Debug.Log("setting player destination");
-                    player.SetDestination(hit.point);
-                    ClearLastClicked();
-                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            bool didHit = GetMouseTarget(out hit, floorLayerMask);
+            if (didHit)
+            {
+                player.SetDestination(hit.point);
+                ClearLastClicked();
             }
         }
     }
@@ -153,16 +146,20 @@ public class ClickableManager : MonoBehaviour
             Transform t = hit.collider.transform;
             if (t.GetComponent<Clickable>() != null)
             {
-                Clickable clickable = t.GetComponent<Clickable>();
-                clickable.MouseEnter();
+                hovered = t.GetComponent<Clickable>();
+                hovered.MouseEnter();
             }
             else
             {
                 ClearCursor();
+                if (hovered != null)
+                    hovered.MouseExit();
             }
         } else
         {
             ClearCursor();
+            if (hovered != null)
+                hovered.MouseExit();
         }
     }
 
